@@ -1,4 +1,4 @@
-PhoenixMiner 4.1a Documentation
+PhoenixMiner 4.1c Documentation
 ===============================
 
 Contents
@@ -239,6 +239,8 @@ Mining options:
   -wdog <n> Enable watchdog timer: 1 - yes, 0 - no (1 is the default). The watchdog timer checks
       periodically if any of the GPUs freezes and if it does, restarts the miner (see the -rmode
       command-line parameter for the restart modes)
+  -wdtimeout <n> Watchdog timeout (30 - 300; default 45 seconds). You can use this parameter to increase
+      the default watchdog timeout in case it restarts the miner needlessly
   -rmode <n> Selects the restart mode when a GPU crashes or freezes:
      0: disabled - miner will shut down instead of restarting
      1: restart with the same command line options - this is the default
@@ -287,6 +289,7 @@ Hardware control options (AMD cards under Windows only; you may specify these op
   -tstart <n> Resume a GPU when temp is <= n deg C (0 for default; i.e. off)
 General Options:
   -v,--version  Show the version and exit
+  -vs Show short version string (e.g. "4.1c") and exit
   -h,--help  Show information about the command-line options and exit
   
 Per-GPU options

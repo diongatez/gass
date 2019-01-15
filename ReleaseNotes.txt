@@ -1,3 +1,12 @@
+PhoenixMiner 4.1c
+-----------------
+  - Added support for turbo kernels (-clkernel 3) and dual mining.
+  - Added command-line option -vs to just print the version (e.g. 4.1c) and exit
+  - Added command-line option -wdtimeout to set the timeout of the watchdog timer. The valid
+    values are from 30 to 300 seconds, the default is 45 seconds.
+  - Added support for Windows AMD drivers 19.1.1
+  - Small bugfixes
+
 PhoenixMiner 4.1a
 -----------------
   - Added faster "turbo" kernels (-clkernel 3) for AMD 470/480/570/580 GPUs. These are usually
