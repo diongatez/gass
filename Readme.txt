@@ -1,4 +1,4 @@
-PhoenixMiner 4.1c Documentation
+PhoenixMiner 4.2a Documentation
 ===============================
 
 Contents
@@ -19,6 +19,9 @@ PhoenixMiner is fast ethash (ETH, ETC, Muiscoin, EXP, UBQ, Pirl, Ellaism, Metave
 miner that supports both AMD and Nvidia cards (including in mixed mining rigs). It runs under
 Windows x64 and Linux x64 and has a developer fee of 0.65%. This means that every 90 minutes the
 miner will mine for us, its developers, for 35 seconds.
+
+PhoenixMiner also supports Ubqhash for mining UBQ, ProgPOW for mining BCI, and dual mining
+Ethash/Ubqhash with Blake2s.
 
 If you have used Claymore's Dual Ethereum miner, you can switch to PhoenixMiner with
 minimal hassle as we support most of Claymore's command-line options and configuration
@@ -68,6 +71,8 @@ dodopool.com (Metaverse ETP):
   ./PhoenixMiner -pool etp.dodopool.com:8008 -wal YourMetaverseETPWalletAddress -worker Rig1 -pass x
 minerpool.net (Ellaism):
   ./PhoenixMiner -pool ella.minerpool.net:8002 -wal YourEllaismWalletAddress -worker Rig1 -pass x
+BCI (Bitcoin Interest):
+  PhoenixMiner.exe -pool eu-1.pool.bci-server.com:3869 -wal YourBciWalletAddress.Rig1 -coin bci -proto 1
 
 Dual-mining command-line examples:
 
@@ -96,8 +101,10 @@ Nicehash (Ethash + Blake2s):
   Metaverse ETP, Akroma, WhaleCoin, and Victorium. This avoids any additional loses and instabilities
   becuase of additional DAG generation, and also allows you to use older cards with small VRAM
   or low hashate on current DAG epochs (e.g. GTX970, 280X).
-* Supports the new Ubqhash algorithm for the UBQ coin. Please note that you must
+* Supports the Ubqhash algorithm for the UBQ coin. Please note that you must
   add -coin ubq to your command line (or COIN: ubq to your epools.txt file) in order to mine UBQ
+* Supports the ProgPOW algorithm for the Bitcoin Interest (BCI) coin mining. Please note that you must
+  add -coin bci to your command line (or COIN: bci to your epools.txt file) in order to mine BCI
 * Full compatibility with the industry standard Claymore's Dual Ethereum miner, including most of
   command-line options, configuration files, and remote monitoring and management.
 * More features coming soon!
@@ -105,11 +112,10 @@ Nicehash (Ethash + Blake2s):
 PhoenixMiner requires Windows x64 (Windows 7, Windows 10, etc.), or Linux x64 (tested on Ubuntu LTS
 and Debian stable).
 
-PhenixMiner also supports dual mining (simulataneous mining of ethash and other cryptocoin algorithm).
-Currently we support only Blake2s as secondary algorithm for dual mining and this feature is only
-supported on AMD GPUs. Note that when using dual mining, there is no devfee on the secondary coin but
-the devfee on the main coin is increased to 0.9%. In other words, if you are using the dual mining
-feature PhoenixMiner will mine for us for 35 seconds every 65 minutes.
+PhenixMiner also supports dual mining (simulataneous mining of ethash/ubqhash and other cryptocoin algorithm).
+Currently we support only Blake2s as secondary algorithm for dual mining. Note that when using dual mining,
+there is no devfee on the secondary coin but the devfee on the main coin is increased to 0.9%. In other words,
+if you are using the dual mining feature PhoenixMiner will mine for us for 35 seconds every 65 minutes.
 
 While the miner is running, you can use some interactive commands. Press the key 'h' while the
 miner's console window has the keyboard focus to see the list of the available commands. The
@@ -131,6 +137,7 @@ Pool options:
      2: eth-proxy (e.g. dwarfpool, nanopool) - this is the default, works for most pools
      3: qtminer (e.g. ethermine, ethpool)
      4: EthereumStratum/1.0.0 (e.g. nicehash)
+     5: EthereumStratum/2.0.0
   -coin <coin> Ethash coin to use for devfee to avoid switching DAGs:
      auto: Auto-detect the coin (default)
      eth: Ethereum
@@ -155,6 +162,12 @@ Pool options:
      moac: MOAC
      etho: Ether-1
      etcc: EtherCC
+     yoc: Yocoin
+     b2g: Bitcoiin2Gen
+     esn: Ethersocial
+     ath: Atheios
+     reosc: REOSC
+     bci: Bitcoin Interest
   -stales <n> Submit stales to ethash pool: 1 - yes (default), 0 - no
   -pool2 <host:port>  Failover ethash pool address. Same as -pool but for the failover pool
   -wal2 <wallet> Failover ethash wallet (if missing -wal will be used for the failover pool too)
@@ -217,6 +230,7 @@ Mining options:
                You may specify this option per-GPU.
   -clNew <n> Use new AMD kernels if supported (0: no, 1: yes; default: 1). You may specify this option per-GPU.
   -clf <n> AMD kernel sync (0: never, 1: periodic; 2: always; default: 1). You may specify this option per-GPU.
+  -nvKernel <n> Type of Nvidia kernel: 0 auto (default), 1 old (v1), 2 new (v2). You may specify this option per-GPU.
   -nvNew <n> Use new Nvidia kernels if supported (0: no, 1: yes; default: 1). You may specify this option per-GPU.
   -nvf <n> Nvidia kernel sync (0: never, 1: periodic; 2: always; 3: forced; default: 1). You may specify this option per-GPU.
   -mode <n> Mining mode (0: dual mining if dual pool(s) are specified; 1: ethash only even if dual pools are specified).
@@ -279,6 +293,7 @@ Hardware control options (AMD cards under Windows only; you may specify these op
      1-4 - only monitoring on all cards with 30-120 seconds interval, negative - fixed fan speed at n %)
   -fanmin <n> Set fan control min speed in % (-1 for default)
   -fanmax <n> Set fan control max speed in % (-1 for default)
+  -fcm <n> Set fan control mode (0 - auto, 1 - use VBIOS fan control, 2 - forced fan control; default: 0)
   -tmax <n> Set fan control max temperature (0 for default)
   -powlim <n> Set GPU power limit in % (from -75 to 75, 0 for default)
   -cclock <n> Set GPU core clock in MHz (0 for default)
@@ -373,8 +388,8 @@ Here are some important notes about the hardware control options:
   Your results may vary with older GPUs.
   
 * The blockchain beta drivers from AMD show quite unstable results - often the voltages don't stick at
-  all or revert back to the default after some time. For best results use the newest drivers from AMD:
-  18.1.1 or 18.2.1, where most of the bugs are fixed.
+  all or revert back to the default after some time. For best results use the newer drivers from AMD:
+  18.2.1 or 18.5.1, where most of the bugs are fixed.
   
 * -tmax specifies the temperature at which the GPU should start to throttle (because the fans can't keep up).
 

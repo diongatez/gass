@@ -1,3 +1,20 @@
+PhoenixMiner 4.2a
+-----------------
+  - Added support for dual mining Ethash and Blake2s on Nvidia GPUs
+  - Added experimental support for ProgPOW mining of Bitcoin Interest (BCI).
+    Note that the kernels are not optimized and only work on AMD. You must use -coin bci.
+  - Added support for EthereumStratum/2.0.0 protocol (use -proto 5 if the pool requires it)
+  - AMD hardware control code was rewritten, now should be more stable and work on older cards too
+  - Added command-line option -fcm to set the way fans are controlled. Use -fcm 2 if the
+    fans are not controlled properly or at all (AMD/Windows only)
+  - Added support for Radeon VII
+  - Added support for AMD drivers up to 19.3.1
+  - Added new command-line option -nvkernel to select the old (1) or new (2) CUDA kernels
+  - Increased the maximum supported DAG epoch to 329
+  - Added support for direct mining without DAG switching of Yocoin (YOC), Bitcoiin2Gen (B2G),
+    Ethersocial (ESN), Atheios (ATH), and REOSC (REOSC). See the -coin parameter for more information.
+  - Other small improvements and fixes.
+
 PhoenixMiner 4.1c
 -----------------
   - Added support for turbo kernels (-clkernel 3) and dual mining.
