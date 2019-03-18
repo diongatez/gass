@@ -1,4 +1,4 @@
-PhoenixMiner 4.2a Documentation
+PhoenixMiner 4.2b Documentation
 ===============================
 
 Contents

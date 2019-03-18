@@ -1,3 +1,10 @@
+PhoenixMiner 4.2b
+-----------------
+  - Fixed the issue with Nvidia RTX20x0 and 1660 cards not working with 4.2a
+  - Fixed the problem with the watchdog timer when solo mining
+  - Added support for Windows AMD drivers 19.3.2
+  - Small bugfixes
+
 PhoenixMiner 4.2a
 -----------------
   - Added support for dual mining Ethash and Blake2s on Nvidia GPUs
