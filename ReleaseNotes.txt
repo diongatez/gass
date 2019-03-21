@@ -1,3 +1,16 @@
+PhoenixMiner 4.2c
+-----------------
+  - Added new Nvidia kernels v3 with slightly higher hashrate and lower power
+    consumption. The new kernels are supported only on GTX1050/1060/1070/1080/Ti
+    GPUs and are enabled by default on these GPUs. Note that you can't use these
+    kernels for dual-mining, only -nvkernel 2 works for dual mining on Nvidia.
+  - Added parameter to enable or disable driver-specific optimizations on
+    Nvidia GPUs. Use -nvdo 1 (the default is 0) to enable the optimizations.
+    This won't change speed but may make the cards more stable depending on
+    the concrete Nvidia driver.
+  - Fixed the slower DAG generation on Vega and Radeon VII GPUs
+  - Small bugfixes
+
 PhoenixMiner 4.2b
 -----------------
   - Fixed the issue with Nvidia RTX20x0 and 1660 cards not working with 4.2a

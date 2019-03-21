@@ -1,4 +1,4 @@
-PhoenixMiner 4.2b Documentation
+PhoenixMiner 4.2c Documentation
 ===============================
 
 Contents
@@ -230,7 +230,11 @@ Mining options:
                You may specify this option per-GPU.
   -clNew <n> Use new AMD kernels if supported (0: no, 1: yes; default: 1). You may specify this option per-GPU.
   -clf <n> AMD kernel sync (0: never, 1: periodic; 2: always; default: 1). You may specify this option per-GPU.
-  -nvKernel <n> Type of Nvidia kernel: 0 auto (default), 1 old (v1), 2 new (v2). You may specify this option per-GPU.
+  -nvKernel <n> Type of Nvidia kernel: 0 auto (default), 1 old (v1), 2 newer (v2), 3 latest (v3).
+                Note that v3 kernels are only supported on GTX10x0 GPUs. Also note that dual mining is
+                supported only by v2 kernels. You may specify this option per-GPU.
+  -nvdo <n> Enable Nvidia driver-specific optimizations (0 - no, the default; 1 - yes). Try -nvdo 1 if your
+            are unstable. You may specify this option per-GPU.
   -nvNew <n> Use new Nvidia kernels if supported (0: no, 1: yes; default: 1). You may specify this option per-GPU.
   -nvf <n> Nvidia kernel sync (0: never, 1: periodic; 2: always; 3: forced; default: 1). You may specify this option per-GPU.
   -mode <n> Mining mode (0: dual mining if dual pool(s) are specified; 1: ethash only even if dual pools are specified).
