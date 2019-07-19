@@ -1,0 +1,14 @@
+Changes in Nvidia kernels for more stable work and better utilization of the GPU
+Implemented ProgPOW BCI mining for Nvidia cards too. Under Windows you must download and unpack the file PhoenixMiner_NVRTC_Windows.zip in the same folder as PhoenixMiner.exe in order to mine BCI with Nvidia cards.
+Added support for all new AMD Windows drivers up to the latest 19.7.2
+Added support for all new AMD Linux drivers up to the latest 19.30-838629
+Added hardware control and monitoring (clocks, voltages, fans, etc.) for Nvidia cards under Windows. Note that you should specify the clocks for Nvidia cards relative to the defaults (e.g. -mclock +400 instead of -mclock 4400)
+Added hardware control and monitoring (clocks, voltages, fans, etc.) for Radeon VII cards (Windows only)
+Added advanced hardware monitoring (specify -hstats 2 to activate it). It will show you the GPU core and memory clocks, voltages, and P-states (if supported)
+Added GPU power consumption if the driver reports it. You can also specify the idle power (-pidle), PSU/GPU efficiency (-ppf) and electricity cost (-prate) and have the miner calculate the daily electricity costs for you. If you are using third-party mining software which doesn't expect the power consumption figures in the miner's log, you can disable it by specifying -hstats 0
+Added new parameter -mt to set the memory timings on AMD cards. -mt 0 is the default, which uses the VBIOS memory timings. -mt 1, and -mt 2 use predefined memory timings that are independent from the VBIOS timings. This option is useful for mining with RX580/570/560/480/470/460 cards without modding the VBIOS. This works only on Windows and with relatively recent drivers (from the last 6-8 months)
+The bench mode now works for dual mining and ProgPOW. The algorithm is determined by the -coin and -dcoin parameters. E.g. -bench 10 -coin bci will bench the BCI ProgPOW, and -bench 10 -dcoin blake2s will bench the dual mining
+Increased the maximum supported DAG epoch to 450. Note that AMD drivers don't allow buffers larger than 4 GB so the biggest possible DAG epoch with current AMD drivers is 378
+Added the ability to read the "FriendlyName" from Windows registry and use it (if available) instead of the generic card name from the driver
+Fixed the devfee pools for some of the alternative coins like PIRL and others where many pools either disappeared or are using old pre-fork versions of the clients and are mining on the wrong blockchain
+Other small improvements and fixes.

@@ -1,3 +1,3 @@
 #!/bin/bash
-sudo /opt/mmp/utils/force_reboot.sh
+echo "Yes" | /opt/mmp/sbin/mmp force-reboot
 

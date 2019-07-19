@@ -1,4 +1,4 @@
-PhoenixMiner 4.2c Documentation
+PhoenixMiner 4.5b Documentation
 ===============================
 
 Contents
@@ -89,8 +89,8 @@ Nicehash (Ethash + Blake2s):
 * Lowest developer fee of 0.65% (35 seconds defvee mining per each 90 minutes)
 * Dual mining ethash/Blake2s with lowest devfee of 0.9% (35 seconds defvee mining per each 65 minutes)
 * Advanced statistics: actual difficulty of each share as well as effective hashrate at the pool
-* Supports AMD Vega, 580/570/480/470, 460/560, Fury, 390/290 and older AMD GPUs with enough VRAM
-* Supports Nvidia 10x0 and 9x0 series as well as older cards with enough VRAM
+* Supports AMD Radeon VII, Vega, 590/580/570/480/470, 460/560, Fury, 390/290 and older AMD GPUs with enough VRAM
+* Supports Nvidia 20x0, 16x0, 10x0 and 9x0 series as well as older cards with enough VRAM
 * DAG file generation in the GPU for faster start-up and DAG epoch switches
 * Supports all ethash mining pools and stratum protocols, including solo mining via HTTP
 * Supports secure pool connections (e.g. ssl://eu1.ethermine.org:5555) to prevent IP hijacking attacks
@@ -292,20 +292,32 @@ Mining options:
           You may specify this option per-GPU.
   -resetoc Reset the HW overclocking settings on startup
   -leaveoc Do not reset overclocking setings when closing the miner
-Hardware control options (AMD cards under Windows only; you may specify these options per-GPU.):
+Hardware control options (Windows only; you may specify these options per-GPU.):
   -tt <n> Set fan control target temperature (special values: 0 - no HW monitoring on ALL cards,
      1-4 - only monitoring on all cards with 30-120 seconds interval, negative - fixed fan speed at n %)
+  -hstats <n> Level of hardware monitoring: 0 - temperature and fan speed only; 1 - temperature, fan speed, and power;
+     2 - full (include core/memory clocks, voltages, P-states). The default is 1.
+  -pidle <n> Idle power consumption of the rig in W. Will be added to the GPU power consumption when
+     calculating the total power consumption of the rig.
+  -ppf <n> The power usage of each GPU will be multiplied by this value to get the actual usage. This value is
+     in percent, so for example if the GPU reports 100 W power usage and you have specified -ppf 106 the GPU
+     power usage will be calculated to be 100 * (106 / 100) = 106 W. This allows you to correct for the efficiency
+     of the PSUs and the individual GPUs. You can also specify this value for each GPU separately.
+  -prate <n> Price of the electricity in USD per kWh (e.g. -prate 0.1). If specified the miner will calculate the
+     rig daily electricity cost
   -fanmin <n> Set fan control min speed in % (-1 for default)
   -fanmax <n> Set fan control max speed in % (-1 for default)
   -fcm <n> Set fan control mode (0 - auto, 1 - use VBIOS fan control, 2 - forced fan control; default: 0)
   -tmax <n> Set fan control max temperature (0 for default)
   -powlim <n> Set GPU power limit in % (from -75 to 75, 0 for default)
-  -cclock <n> Set GPU core clock in MHz (0 for default)
+  -cclock <n> Set GPU core clock in MHz (0 for default). For Nvidia cards use relative values (e.g. -300 or +400)
   -cvddc <n> Set GPU core voltage in mV (0 for default)
-  -mclock <n> Set GPU memory clock in MHz (0 for default)
+  -mclock <n> Set GPU memory clock in MHz (0 for default). For Nvidia cards use relative values (e.g. -300 or +400)
   -mvddc <n> Set GPU memory voltage in mV (0 for default)
   -tstop <n> Pause a GPU when temp is >= n deg C (0 for default; i.e. off)
   -tstart <n> Resume a GPU when temp is <= n deg C (0 for default; i.e. off)
+  -mt <n> VRAM timings (AMD under Windows only): 0 - default VBIOS values; 1 - faster timings; 2 - fastest timings.
+     The default is 0. This is useful for mining with AMD cards without modding the VBIOS.
 General Options:
   -v,--version  Show the version and exit
   -vs Show short version string (e.g. "4.1c") and exit

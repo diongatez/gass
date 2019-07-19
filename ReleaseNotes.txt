@@ -1,3 +1,21 @@
+PhoenixMiner 4.5b
+-----------------
+  - Changes in Nvidia kernels for more stable work and better utilization of the GPU
+  - Implemented ProgPOW BCI mining for Nvidia cards too
+  - Added support for all new AMD Linux drivers up to the latest 19.30-838629
+  - Added GPU power consumption if the driver reports it. You can also specify the
+    idle power (-pidle), PSU/GPU efficiency (-ppf) and electricity cost (-prate) and
+    have the miner calculate the daily electricity costs for you. If you are using
+    third-party mining software which doesn't expect the power consumption figures
+    in the miner's log, you can disable it by specifying -hstats 0
+  - The bench mode now works for dual mining and ProgPOW. The algorithm is determined
+    by the -coin and -dcoin parameters. E.g. -bench 10 -coin bci will bench the BCI
+    ProgPOW, and -bench 10 -dcoin blake2s will bench the dual mining
+  - Increased the maximum supported DAG epoch to 450. Note that AMD drivers don't
+    allow buffers larger than 4 GB so the biggest possible DAG epoch with current
+    AMD drivers is 378
+  - Small bugfixes and improvements
+
 PhoenixMiner 4.2c
 -----------------
   - Added new Nvidia kernels v3 with slightly higher hashrate and lower power
