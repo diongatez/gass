@@ -1,3 +1,8 @@
+PhoenixMiner 4.5c
+-----------------
+  - Added support for the latest AMD Windows drivers 19.7.3
+  - Fixed issue with ProgPOW BCI mining on Nvidia RTX20x0 and GTX16x0 cards
+
 PhoenixMiner 4.5b
 -----------------
   - Changes in Nvidia kernels for more stable work and better utilization of the GPU
