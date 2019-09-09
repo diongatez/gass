@@ -1,4 +1,4 @@
-PhoenixMiner 4.5c Documentation
+PhoenixMiner 4.6b Documentation
 ===============================
 
 Contents
@@ -89,12 +89,12 @@ Nicehash (Ethash + Blake2s):
 * Lowest developer fee of 0.65% (35 seconds defvee mining per each 90 minutes)
 * Dual mining ethash/Blake2s with lowest devfee of 0.9% (35 seconds defvee mining per each 65 minutes)
 * Advanced statistics: actual difficulty of each share as well as effective hashrate at the pool
-* Supports AMD Radeon VII, Vega, 590/580/570/480/470, 460/560, Fury, 390/290 and older AMD GPUs with enough VRAM
+* Supports AMD RX5700, Radeon VII, Vega, 590/580/570/480/470, 460/560, Fury, 390/290 and older AMD GPUs with enough VRAM
 * Supports Nvidia 20x0, 16x0, 10x0 and 9x0 series as well as older cards with enough VRAM
 * DAG file generation in the GPU for faster start-up and DAG epoch switches
 * Supports all ethash mining pools and stratum protocols, including solo mining via HTTP
 * Supports secure pool connections (e.g. ssl://eu1.ethermine.org:5555) to prevent IP hijacking attacks
-* Detailed statistics, including the individual cards hashrate, shares, temperature and fan speed
+* Detailed statistics, including the individual cards hashrate, shares, temperature, fan speed, clocks, voltages, etc.
 * Unlimited number of fail-over pools in epools.txt configuration file (or two on the command line)
 * GPU tuning for the AMD GPUs to achieve maximum performance with your rig
 * Supports devfee on alternative ethash currencies like ETC, EXP, Music, UBQ, Pirl, Ellaism,
@@ -292,7 +292,7 @@ Mining options:
           You may specify this option per-GPU.
   -resetoc Reset the HW overclocking settings on startup
   -leaveoc Do not reset overclocking setings when closing the miner
-Hardware control options (Windows only; you may specify these options per-GPU.):
+Hardware control options (you may specify these options per-GPU.):
   -tt <n> Set fan control target temperature (special values: 0 - no HW monitoring on ALL cards,
      1-4 - only monitoring on all cards with 30-120 seconds interval, negative - fixed fan speed at n %)
   -hstats <n> Level of hardware monitoring: 0 - temperature and fan speed only; 1 - temperature, fan speed, and power;
@@ -307,7 +307,8 @@ Hardware control options (Windows only; you may specify these options per-GPU.):
      rig daily electricity cost
   -fanmin <n> Set fan control min speed in % (-1 for default)
   -fanmax <n> Set fan control max speed in % (-1 for default)
-  -fcm <n> Set fan control mode (0 - auto, 1 - use VBIOS fan control, 2 - forced fan control; default: 0)
+  -fanidle <n> Set idle fan speed in % (-1 is auto, the default is 20)
+  -fpwm <n> Fan PWM mode (0 - auto, 1 - direct, 2 - Polaris, 3 - Vega, 4 - Radeon VII, Navi; default: 0)
   -tmax <n> Set fan control max temperature (0 for default)
   -powlim <n> Set GPU power limit in % (from -75 to 75, 0 for default)
   -cclock <n> Set GPU core clock in MHz (0 for default). For Nvidia cards use relative values (e.g. -300 or +400)
@@ -394,18 +395,29 @@ unique features to increase your mining profits.
 
 Here are some important notes about the hardware control options:
 
-* HW control under Linux is coming soon.
+* In order to have working hardware control under Linux, you need relatively recent kernel (4.15 or later),
+  recent AMD drivers (we tested with 19.30-855429), PhoeniMiner must be running as root (sudo ./PhoenixMiner),
+  AND you need to add the following boot parameter to the Linux kernel:
+    amdgpu.ppfeaturemask=0xffffffff
+
+* In all AMD Linux drivers there is a bug with returning the fan control back to automatic. As a workaround
+  we added the parameter -fanidle which allows you to specify the default fan speed after PhoenixMiner is
+  closed. The default value is 20%
+
+* In AMD Linux drivers the fan PWM curves are very strange and while we have tested on dozens of cards, and
+  PhoenixMiner should be able to detect the PWM type automatically, you can use the -fpwm parameter to force
+  different kinds of fan PWM mappings (not recommended unless you really know what you are doing).
 
 * If you specify a single value (e.g. -cvddc 1150), it will be used on all cards. Specify different
   values for each card like this (separate with comma): -cvddc 1100,1100,1150,1120,1090 
   If the specified values are less than the number of GPUs, the rest of GPUs will use the default values.
 
-* We have tested only on relatively recent AMD GPUs (RX460/470/480/560/570/580 and Vega).
+* We have tested only on relatively recent AMD GPUs (RX460/470/480/560/570/580, Vega, Radeon VII, RX5700).
   Your results may vary with older GPUs.
   
 * The blockchain beta drivers from AMD show quite unstable results - often the voltages don't stick at
   all or revert back to the default after some time. For best results use the newer drivers from AMD:
-  18.2.1 or 18.5.1, where most of the bugs are fixed.
+  18.5.1 or later, where most of the bugs are fixed.
   
 * -tmax specifies the temperature at which the GPU should start to throttle (because the fans can't keep up).
 
@@ -413,7 +425,7 @@ Here are some important notes about the hardware control options:
   like GPU-Z to monitor the voltages, etc. MSI Afterburner also seems to behave OK (so you can use it to
   control the Nvidia cards while AMD cards are controller by PhoenixMiner).
   
-* This should be obvious but still: if given clocks/voltages are causing crahses/freezes/incorrect shares
+* This should be obvious but still: if given clocks/voltages are causing crashes/freezes/incorrect shares
   when set with third-party program, they will be just as much unstable when set via PhoenixMiner hardware
   control options.
   
