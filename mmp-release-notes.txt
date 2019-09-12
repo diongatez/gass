@@ -2,6 +2,7 @@ Added optimized kernels for AMD RX5700 (Navi) GPUs under Windows (you need AMD d
 Implemented hardware control (setting clocks, voltages, power limit, fan control) for AMD cards under Linux. Requires PhoenixMiner running with root permissions. The clocks and voltage control require relatively new drivers (tested on 19.30-855429) and adding the following boot parameter to Linux kernel: amdgpu.ppfeaturemask=0xffffffff
 Added advanced hardware stats (-hstats 2) for Nvidia cards under Linux
 Added advanced hardware stats (-hstats 2) for AMD cards under Linux (requires relatively new drivers)
+Now showing the current hotspot (junction) and memory temperatures on AMD cards when -hstats 2 option is used. Working on both Windows and Linux. Note that only most recent cards support this feature (e.g. Radeon VII, RX5700)
 Implemented proper fan control for latest Nvidia cards from 20x0 and 16x0 series (Windows)
 Added support for all new AMD Windows drivers up to the latest 19.9.1
 Added support for all new AMD Linux drivers up to the latest 19.30-855429

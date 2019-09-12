@@ -1,3 +1,9 @@
+PhoenixMiner 4.6c
+-----------------
+  - Now showing the current hotspot (junction) and memory temperatures on AMD cards
+    when -hstats 2 option is used. Working on both Windows and Linux. Note that only most recent
+    cards support this feature (e.g. Radeon VII, RX5700)
+
 PhoenixMiner 4.6b
 -----------------
   - Added optimized kernels for AMD RX5700 (Navi) GPUs under Windows (you need AMD driver
