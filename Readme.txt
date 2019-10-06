@@ -1,4 +1,4 @@
-PhoenixMiner 4.6c Documentation
+PhoenixMiner 4.7b Documentation
 ===============================
 
 Contents
@@ -167,6 +167,7 @@ Pool options:
      esn: Ethersocial
      ath: Atheios
      reosc: REOSC
+     qkc: QuarkChain
      bci: Bitcoin Interest
   -stales <n> Submit stales to ethash pool: 1 - yes (default), 0 - no
   -pool2 <host:port>  Failover ethash pool address. Same as -pool but for the failover pool
@@ -277,6 +278,13 @@ Mining options:
       On startup, if the logfiles are larger than the specified limit, the oldest are deleted. If you use a
       single logfile (by using -logfile), then it is truncated if it is bigger than the limit and a new one
       is created.
+  -config <name> Load a file with configuration options that will be added to the command-line options.
+      Note that the order is important. For example, if we have a config.txt file that contains -cclock 1000
+      and we specify command line -cclock 1100 -config config.txt, the options from the config.txt file will take
+      precedence and the resulting -cclock will be 1000. If the order is reversed (-config config.txt -cclock 1100)
+      then the second option takes precedence and the resulting -cclock will be 1100. Note that only one -config
+      option is allowed. Also note that if you reload the config file with 'c' key or with the remote interface,
+      its options will take precedece over whatever you have specified in the command-line.
   -timeout <n> Restart miner according to -rmode after n minutes
   -pauseat <hh:mm> Pause the miner at hh::mm (24 hours time). You can specify multiple times: -pauseat 6:00,12:00
   -resumeat <hh:mm> Resume the miner at hh::mm (24 hours time). You can specify multiple times: -resumeat 8:00,22:00

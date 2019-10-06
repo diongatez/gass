@@ -1,3 +1,14 @@
+PhoenixMiner 4.7b
+-----------------
+  - New kernels for Navi (RX5700) with better stability. Should solve the freezing and restarts
+    that some miners are experiencing with Navi cards
+  - Reduced VRAM usage for both AMD and Nvidia cards on Windows and Linux
+  - Added command-line option -config to load a config.txt file. This allows combining command-line
+    options and config.txt file. The order of the options is important: if the same option is used twice,
+    the second one overrides the first one
+  - Added support for mining QuarkChain (QKC) without DAG switching on devfee (use -coin qkc)
+  - Added support for the latest AMD Windows drivers 19.9.3
+
 PhoenixMiner 4.6c
 -----------------
   - Now showing the current hotspot (junction) and memory temperatures on AMD cards
