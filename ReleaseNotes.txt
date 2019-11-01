@@ -1,3 +1,8 @@
+PhoenixMiner 4.7c
+-----------------
+  - Additional fine tuning of Navi (RX5700) kernels
+  - Other small improvements and fixes
+
 PhoenixMiner 4.7b
 -----------------
   - New kernels for Navi (RX5700) with better stability. Should solve the freezing and restarts
