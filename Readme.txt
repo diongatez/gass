@@ -1,4 +1,4 @@
-PhoenixMiner 4.7c Documentation
+PhoenixMiner 4.8b Documentation
 ===============================
 
 Contents
@@ -339,7 +339,25 @@ setting for each of the GPUs. For example, to specify the -gt value for all card
 -gt 90 but if you want to specify a different GT value for each of the cards, use something like this:
 -gt 20,15,40,90,90 for a five-GPU mining rig. This would set GT to 20 for the first GPU, 15 for the second
 GPU, and so on. If you specify less values than you have GPUs, the rest of the GPUs will use the default
-value for the parameter.  
+value for the parameter.
+
+You can also use another, more flexible way of specifying different values for the different cards.
+This is best explained by example: -cclock *:1100,1-3:1090,4:1300 - here we are setting core clock
+to 1100 MHz for all cards, except the cards 1 to 3, on which it is set to 1090 MHz, and card 4 to 1300 MHz.
+
+The part before the colon (:) is the selector, which selects the GPUs for which the value after the colon is applied. The selector can be:
+  - single GPU index: e.g. 5:1000 sets 1000 for the 5th GPU
+  - range of GPU indexes: e.g 2-5:1200 sets 1200 for the GPUs 2,3,4, and 5
+  - asterisk, which sets the value for all GPUs
+  - label amd or nvidia: e.g. amd:1090 sets the value to 1090 for all AMD cards
+  - arbitrary string that starts with letter and can contain letters, numbers and asterisks,
+    which is matched with the GPU name as listed by PhoenixMiner. Example: gtx*1070:+500 will
+    set value +500 for all cards which contain 'gtx' and '1070' in their names with anything
+    between them. This will match 'Nvidia GeForce GTX 1070' but not 'Nvidia GeForce 1070'.
+    
+Note that if more than one selector matches given card, than only the last one counts.
+Example: -cclock *:1100,1-4:1090,2:1300 will set card 2 to 1300; cards 1,2, and 4 to 1090;
+and the rest of the cards to 1100 MHz core clock.
   
 Additionally, while the miner is running, you can use the following interactive commands
 in the console window by pressing one of these keys:
