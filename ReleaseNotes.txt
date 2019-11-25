@@ -1,3 +1,11 @@
+PhoenixMiner 4.8c
+-----------------
+  - Added command-line option -gbase to set 0-base or 1-based GPU indexes (the default is 1)
+    With -gbase 1 (the default), the first GPU is GPU1, then GPU2, etc. With -gbase 0
+    the first GPU is GPU0, second - GPU1, etc. Note that this also changes the indexes
+    that are used with all command line options that accept GPU indexes (e.g. -gpus)
+    as well as these used with the interactive commands on the miner shell window
+
 PhoenixMiner 4.8b
 -----------------
   - Added support for the latest AMD drivers under Linux 19.30-934563, and for mining with

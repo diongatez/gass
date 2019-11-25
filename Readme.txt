@@ -1,4 +1,4 @@
-PhoenixMiner 4.8b Documentation
+PhoenixMiner 4.8c Documentation
 ===============================
 
 Contents
@@ -241,6 +241,7 @@ Mining options:
   -mode <n> Mining mode (0: dual mining if dual pool(s) are specified; 1: ethash only even if dual pools are specified).
             You may specify this option per-GPU.
   -list List the detected GPUs devices and exit
+  -gbase <n> Set the index of the first GPU (0 or 1, default: 1)
   -minRigSpeed <n> Restart the miner if avg 5 min speed is below <n> MH/s
   -eres <n> Allocate DAG buffers big enough for n epochs ahead (default: 2) to
             avoid allocating new buffers on each DAG epoch switch, which should improve DAG switch stability.
