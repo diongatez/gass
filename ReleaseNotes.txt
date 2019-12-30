@@ -1,3 +1,13 @@
+PhoenixMiner 4.9b
+-----------------
+  - Added support for AMD RX5500 cards
+  - Added support for the latest AMD Windows drivers 19.12.3
+  - Fixed the problem with loading NVML with the latest Nvidia drivers
+  - Fixed a problem that was introduced in 4.8c causing mismatching of the cards when
+    using more than one value in -cclock or any other command-line argument with
+    more than one value (i.e. when using different values for each card)
+  - Added an HTML version of the documentation for better navigation and readability
+
 PhoenixMiner 4.8c
 -----------------
   - Added command-line option -gbase to set 0-base or 1-based GPU indexes (the default is 1)

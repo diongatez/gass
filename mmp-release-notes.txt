@@ -1,5 +1,5 @@
-Added support for the latest AMD drivers under Linux 19.30-934563 and for mining with RX5700 cards under Linux. Note that drivers are quite buggy and most of the overclocking options don't work, as well as most of the hardware monitoring options.
-Added a new flexible way for setting GPU-specific options with selectors. Example: -cclock 1-3:1090,4:1300 -mclock nvidia:+450,amd:2000,*:1900,gtx*1070*ti:+200 See Readme.txt for more information.
-Added command-line option -gbase to set 0-base or 1-based GPU indexes (the default is 1). With -gbase 1 (the default), the first GPU is GPU1, then GPU2, etc. With -gbase 0 the first GPU is GPU0, second - GPU1, etc. Note that this also changes the indexes that are used with all command line options that accept GPU indexes (e.g. -gpus) as well as these used with the interactive commands on the miner shell window
-Validated support for the latest AMD Windows drivers 19.11.3 (but they already work with 4.7c because there were no significant changes in the OpenCL driver)
-Other small improvements and fixes.
+Added support for AMD RX5500 cards
+Added support for the latest AMD Windows drivers 19.12.3
+Fixed the problem with loading NVML library with the latest Nvidia drivers
+Fixed a problem that was introduced in 4.8c causing mismatching of the cards when using more than one value in -cclock or any other command-line argument with more than one value (i.e. when using different values for each card)
+Added an HTML version of the documentation for better navigation and readability
