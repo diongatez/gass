@@ -1,3 +1,2 @@
 #!/bin/bash
-echo "Yes" | /opt/mmp/sbin/mmp force-reboot
-
+/opt/mmp/sbin/reboot.sh

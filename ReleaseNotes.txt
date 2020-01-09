@@ -1,3 +1,9 @@
+PhoenixMiner 4.9c
+-----------------
+  - Adding option -rate 2 to use the command name "eth_submitHashRate" instead of "eth_submitHashrate" when solo mining
+  - Adding support for AMD Linux drivers 19.50-967956
+  - Other small fixes and improvements
+
 PhoenixMiner 4.9b
 -----------------
   - Added support for AMD RX5500 cards

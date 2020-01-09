@@ -1,4 +1,4 @@
--[ PhoenixMiner 4.9b documentation ]-
+-[ PhoenixMiner 4.9c documentation ]-
 
 * Introduction
 
@@ -85,7 +85,7 @@ Quick start
 Download and install
 ====================
 
-You can download PhoenixMiner 4.9b from here:
+You can download PhoenixMiner 4.9c from here:
 
 https://mega.nz/#F!2VskDJrI!lsQsz1CdDe8x5cH3L8QaBw (MEGA)
 
@@ -95,7 +95,7 @@ you want to mine BCI with Nvdia cards under Windows.
 If you want to check the integrity of the downloaded file, you can use
 the hashes (checksums) that are provided in our bitcointalk.org thread
 (https://bitcointalk.org/index.php?topic=2647654.0) or the file
-"PhoenixMiner_4.9b_checksums.txt" which is in the same MEGA folder as
+"PhoenixMiner_4.9c_checksums.txt" which is in the same MEGA folder as
 the main PhoenixMiner archive.
 
 Note: **Linux:** Under Linux you need to replace "PhoenixMiner.exe"
@@ -489,7 +489,9 @@ General pool options
    Recheck period for Solo/GetWork mining (default: 200 ms)
 
 -rate <n>
-   Report hashrate to the pool: 1 - yes, 0 - no (1 is the default)
+   Report hashrate to the pool: 1 - yes, 0 - no (1 is the default), 2
+   - (for solo mining only) use alternative name of the report method
+   "eth_submitHashRate" instead of "eth_submitHashrate"
 
 
 Benchmark mode
