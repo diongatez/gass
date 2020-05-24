@@ -1,3 +1,13 @@
+PhoenixMiner 5.0b
+-----------------
+  - Added support for mining with 4 GB AMD cards beyond the DAG epoch 350. Depending on the
+    OS and driver versions, you will be able to use 4 GB AMD cards until epochs 372 under
+    Windows, and 380 under Linux.
+  - Added new -dagrestart command-line option to work around the problems with DAG allocation
+    on 4 GB AMD cards under some driver versions. See Readme.txt for more information.
+  - Added support for latest AMD drivers 20.4.2 under Windows and 20.10-1048554 under Linux
+  - Many other small improvements and fixes
+
 PhoenixMiner 4.9c
 -----------------
   - Adding option -rate 2 to use the command name "eth_submitHashRate" instead of "eth_submitHashrate" when solo mining

@@ -1,4 +1,4 @@
--[ PhoenixMiner 4.9c documentation ]-
+-[ PhoenixMiner 5.0b documentation ]-
 
 * Introduction
 
@@ -85,7 +85,7 @@ Quick start
 Download and install
 ====================
 
-You can download PhoenixMiner 4.9c from here:
+You can download PhoenixMiner 5.0b from here:
 
 https://mega.nz/#F!2VskDJrI!lsQsz1CdDe8x5cH3L8QaBw (MEGA)
 
@@ -117,9 +117,6 @@ ethermine.org (ETH, secure connection):
 ethpool.org (ETH):
       PhoenixMiner.exe -pool eu1.ethpool.org:3333 -pool2 us1.ethpool.org:3333 -wal YourEthWalletAddress.WorkerName -proto 3
 
-dwarfpool.com (ETH):
-      PhoenixMiner.exe -pool eth-eu.dwarfpool.com:8008 -wal YourEthWalletAddress/WorkerName -pass x
-
 nanopool.org (ETH):
       PhoenixMiner.exe -pool eth-eu1.nanopool.org:9999 -wal YourEthWalletAddress/WorkerName -pass x
 
@@ -144,8 +141,8 @@ epool.io (ETC):
 whalesburg.com (ethash auto-switching):
       PhoenixMiner.exe -pool proxy.pool.whalesburg.com:8082 -wal YourEthWalletAddress -worker WorkerName -proto 2
 
-dwarfpool.com (EXP):
-      PhoenixMiner.exe -pool exp-eu.dwarfpool.com:8018 -wal YourExpWalletAddress/WorkerName
+miningpoolhub (EXP):
+      PhoenixMiner.exe -pool us-east.ethash-hub.miningpoolhub.com:20565 -wal YourLoginName.WorkerName -pass x -proto 1
 
 miningpoolhub (MUSIC):
       PhoenixMiner.exe -pool europe.ethash-hub.miningpoolhub.com:20585 -wal YourLoginName.WorkerName -pass x -proto 1
@@ -162,8 +159,8 @@ ubiqpool.io (UBIQ):
 minerpool.net (PIRL):
       PhoenixMiner.exe -pool pirl.minerpool.net:8002 -wal YourPirlWalletAddress -pass x -worker WorkerName
 
-dodopool.com (Metaverse ETP):
-      PhoenixMiner.exe -pool etp.dodopool.com:8008 -wal YourMetaverseETPWalletAddress -worker Rig1 -pass x
+etp.2miners.com (Metaverse ETP):
+      PhoenixMiner.exe -pool etp.2miners.com:9292 -wal YourMetaverseETPWalletAddress -worker Rig1 -pass x
 
 minerpool.net (Ellaism):
       PhoenixMiner.exe -pool ella.minerpool.net:8002 -wal YourEllaismWalletAddress -worker Rig1 -pass x
@@ -194,8 +191,8 @@ Nicehash (Ethash + Blake2s):
 ProgPOW command-line examples
 =============================
 
-BCI on BCI-Server:
-      PhoenixMiner.exe -pool eu-1.pool.bci-server.com:3869 -wal YourBciWalletAddress.Rig1 -coin bci -proto 1
+BCI on Suprnova.cc:
+      PhoenixMiner.exe -pool bci.suprnova.cc:9166 -wal YourSupernovaLogin -coin bci
 
 
 Features, requirements, and limitations
@@ -309,7 +306,7 @@ Pool options
       miner-proxy stratum spec (e.g. coinotron)
 
    2:
-      eth-proxy (e.g. dwarfpool, nanopool) - this is the default,
+      eth-proxy (e.g. ethermine, nanopool) - this is the default,
       works for most pools
 
    3:
@@ -483,7 +480,7 @@ General pool options
    primary pool.
 
 -retrydelay <n>
-   Seconds to wait before reconnecting (default: 20)
+   Seconds to wait before reconnecting (default: 5)
 
 -gwtime <n>
    Recheck period for Solo/GetWork mining (default: 200 ms)
@@ -634,6 +631,13 @@ Use only Nvidia cards
    Allocate DAG buffers big enough for n epochs ahead (default: 2) to
    avoid allocating new buffers on each DAG epoch switch, which should
    improve DAG switch stability. You may specify this option per-GPU.
+
+-dagrestart <n>
+   Restart the miner when allocating buffer for a new DAG epoch. The
+   possible values are: 0 - never, 1 - always, 2 - auto (the miner
+   decides depending on the driver version). This is relevant for 4 GB
+   AMD cards, which may have problems with new DAG epochs after epoch
+   350.
 
 -lidag <n>
    Slow down DAG generation to avoid crashes when switching DAG epochs
@@ -902,7 +906,7 @@ for which the value after the colon is applied. The selector can be:
 
 Note that if more than one selector matches given card, than only the
 last one counts. Example: "-cclock *:1100,1-4:1090,2:1300" will set
-card 2 to 1300; cards 1,2, and 4 to 1090; and the rest of the cards to
+card 2 to 1300; cards 1,3, and 4 to 1090; and the rest of the cards to
 1100 MHz core clock.
 
 
@@ -1212,4 +1216,4 @@ P008: The miner sometimes crashes when the DAG epoch change.
    and you will be able to see if it is stable during multiple DAG
    generations. If it isn’t you can try to alter the -lidag and -eres
    command line options until the desired stability is achieved.
-
+
