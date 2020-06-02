@@ -1,4 +1,4 @@
--[ PhoenixMiner 5.0b documentation ]-
+-[ PhoenixMiner 5.0c documentation ]-
 
 * Introduction
 
@@ -85,7 +85,7 @@ Quick start
 Download and install
 ====================
 
-You can download PhoenixMiner 5.0b from here:
+You can download PhoenixMiner 5.0c from here:
 
 https://mega.nz/#F!2VskDJrI!lsQsz1CdDe8x5cH3L8QaBw (MEGA)
 
@@ -1216,4 +1216,4 @@ P008: The miner sometimes crashes when the DAG epoch change.
    and you will be able to see if it is stable during multiple DAG
    generations. If it isn’t you can try to alter the -lidag and -eres
    command line options until the desired stability is achieved.
-
+
