@@ -1,4 +1,4 @@
--[ PhoenixMiner 5.0c documentation ]-
+-[ PhoenixMiner 5.0d documentation ]-
 
 * Introduction
 
@@ -85,7 +85,7 @@ Quick start
 Download and install
 ====================
 
-You can download PhoenixMiner 5.0c from here:
+You can download PhoenixMiner 5.0d from here:
 
 https://mega.nz/#F!2VskDJrI!lsQsz1CdDe8x5cH3L8QaBw (MEGA)
 

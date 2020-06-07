@@ -1,2 +1,1 @@
-Added support for latest AMD Windows driver 20.5.1
-Added SO_REUSEPORT option on the remote control port (default 3333) under Linux to prevent problems when the miner is restarting
+fixes a problem with crashing or slowing down when switching from ETC to ETH mining

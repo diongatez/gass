@@ -1,3 +1,7 @@
+PhoenixMiner 5.0d
+-----------------
+  - Fixed problem with crashing or slowing down when switching from ETC to ETH mining
+
 PhoenixMiner 5.0c
 -----------------
   - Added support for latest AMD Windows driver 20.5.1
