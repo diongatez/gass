@@ -1,1 +1,1 @@
-fixes a problem with crashing or slowing down when switching from ETC to ETH mining
+Added additional fixes and some workarounds for the ETH to ETC switching problem in the new version.
