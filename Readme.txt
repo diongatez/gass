@@ -1,4 +1,4 @@
--[ PhoenixMiner 5.0e documentation ]-
+-[ PhoenixMiner 5.1b documentation ]-
 
 * Introduction
 
@@ -85,7 +85,7 @@ Quick start
 Download and install
 ====================
 
-You can download PhoenixMiner 5.0e from here:
+You can download PhoenixMiner 5.1b from here:
 
 https://mega.nz/#F!2VskDJrI!lsQsz1CdDe8x5cH3L8QaBw (MEGA)
 
@@ -95,7 +95,7 @@ you want to mine BCI with Nvdia cards under Windows.
 If you want to check the integrity of the downloaded file, you can use
 the hashes (checksums) that are provided in our bitcointalk.org thread
 (https://bitcointalk.org/index.php?topic=2647654.0) or the file
-"PhoenixMiner_4.9c_checksums.txt" which is in the same MEGA folder as
+"PhoenixMiner_5.1b_checksums.txt" which is in the same MEGA folder as
 the main PhoenixMiner archive.
 
 Note: **Linux:** Under Linux you need to replace "PhoenixMiner.exe"
@@ -526,30 +526,28 @@ Remote control options
    Set the CDM remote monitoring password
 
 -cdmrs
+   Reload the settings if "config.txt" is edited/uploaded remotely.
+   Note that most options require restart in order to change.
 
-Reload the settings if "config.txt" is edited/uploaded remotely. Note
-that most options require restart in order to change.
-
-Currently the following options can be changed without restarting:
--mi, -gt, -sci, -clf, -nvf, and all hardware control parameters (-tt,
--fanmin, -fanmax, -powlim, -tmax, -cclock, -cvddc, -mclock, -mvddc).
+   Currently the following options can be changed without restarting:
+   "-mi", "-gt", "-sci", "-clf", "-nvf", "-gpow", and most of the
+   hardware control parameters ("-tt", "-fcm", "-fanmin", "-fanmax",
+   "-powlim", "-tmax", "-ttli", "-cclock", "-cvddc", "-mclock",
+   "-mvddc", "-ppf", "-straps", "-vmt1", "-vmt2", "-vmt3", "-vmr").
 
 
 Mining options
 ==============
 
 -amd
-
-Use only AMD cards
+   Use only AMD cards
 
 -acm
-
-Turn on AMD compute mode on the supported GPUs. This is equivalent of
-pressing "y" in the miner console.
+   Turn on AMD compute mode on the supported GPUs. This is equivalent
+   of pressing "y" in the miner console.
 
 -nvidia
-
-Use only Nvidia cards
+   Use only Nvidia cards
 
 -gpus <123 ..n>
    Use only the specified GPUs (if more than 10, separate the indexes
@@ -661,8 +659,8 @@ Use only Nvidia cards
    and 128 for Linux)
 
 -altinit
-
-Use alternative way to initialize AMD cards to prevent startup crashes
+   Use alternative way to initialize AMD cards to prevent startup
+   crashes
 
 -wdog <n>
    Enable watchdog timer: 1 - yes, 0 - no (1 is the default). The
@@ -759,12 +757,10 @@ Use alternative way to initialize AMD cards to prevent startup crashes
    utilization; the default is 0. You may specify this option per-GPU.
 
 -resetoc
-
-Reset the HW overclocking settings on startup
+   Reset the HW overclocking settings on startup
 
 -leaveoc
-
-Do not reset overclocking settings when closing the miner
+   Do not reset overclocking settings when closing the miner
 
 
 Hardware control options (you may specify these options per-GPU)
@@ -847,20 +843,52 @@ Hardware control options (you may specify these options per-GPU)
    - faster timings; 2 - fastest timings. The default is 0. This is
    useful for mining with AMD cards without modding the VBIOS.
 
+-leavemt
+   Do not reset memory timing level ("-mt") to 0 when closing
+
+-ttli <n>
+   Lower GPU usage when GPU temperature is above n deg C. The default
+   value is 0, which means do not lower the usage regardless of the
+   GPU temperature. This option is useful whenever -tmax is not
+   working. If you are using both "-tt" and "-ttli" options, the
+   temperature in "-tt" should be lower than the "-ttli" to avoid
+   throttling the GPUs without using the fans to properly cool them
+   first.
+
+-straps <n>
+   Memory strap level (Nvidia cards 10x0 series only). The possible
+   values are 0 to 6. 0 is the default value and uses the default
+   timings from the VBIOS. Each strap level corresponds to a
+   predefined combination of memory timings ("-vmt1", "-vmt2",
+   "-vmt3", "-vmr"). Strap level 3 is the fastest predefined level and
+   may not work on most cards, 1 is the slowest (but still faster than
+   the default timings). Strap levels 4 to 6 are the same as 1 to 3
+   but with less aggressive refresh rates (i.e. lower "-vmr" values).
+
+-vmt1 <n>
+   Memory timing parameter 1 (0 to 100, default 0)
+
+-vmt2 <n>
+   Memory timing parameter 2 (0 to 100, default 0)
+
+-vmt3 <n>
+   Memory timing parameter 3 (0 to 100, default 0)
+
+-vmr <n>
+   Memory refresh rate (0 to 100, default 0)
+
 
 General Options
 ===============
 
 -list
-
-List the detected GPUs devices and exit
+   List the detected GPUs devices and exit
 
 -v,–version
    Show the version and exit
 
 -vs
-
-Show short version string (e.g. "4.1c") and exit
+   Show short version string (e.g. "4.1c") and exit
 
 -h,–help
    Show information about the command-line options and exit
@@ -1014,6 +1042,19 @@ Hardware control options
 ************************
 
 Here are some important notes about the hardware control options:
+
+* When using the VRAM timing options ("-straps", "-vmt1", "-vmt2",
+  "-vmt3", "-vmr"), start with lower values and make sure that the
+  cards are stable before trying higher and more aggressive settings.
+  You can use "-straps" along with the other options. For example
+  "-straps 1" "-vmt1 60" will use the timings from 1st strap level but
+  -vmt1 will be set to 60 instead of whatever value is specified by
+  the 1st strap level. In such case the "-straps" option must be
+  specified first.
+
+* The VRAM timing options can be quite different between the GPUs,
+  even when the GPUs are the same model. Therefore, you can (and
+  probably should) specify the VRAM timing options per-GPU.
 
 * If you specify a single value (e.g. "-cvddc 1150"), it will be
   used on all cards. Specify different values for each card like this

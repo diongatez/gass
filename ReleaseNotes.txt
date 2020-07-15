@@ -1,3 +1,13 @@
+PhoenixMiner 5.1b
+-----------------
+  - Added support for VRAM timing adjustments for Nvidia cards of 10x0 series (see the new command
+    line parameter -straps, -vmt1, -vmt2, -vmt3, and -vmr for more information)
+  - Added -ttli option to automatically decrease the mining speed to avoid overheating the GPUs over
+    the target temperature (useful when -tmax option is not supported by the drivers)
+  - Fixed long-standing problems with -gpow option, which now works properly
+  - Added support for latest AMD drivers 20.7.1 under Windows and 20.20-1089974 under Linux
+  - Many other small improvements and fixes
+
 PhoenixMiner 5.0e
 -----------------
   - Additional fixes for the problem with crashing when switching from ETC to ETH mining
