@@ -1,3 +1,11 @@
+PhoenixMiner 5.1c
+-----------------
+  - Added more Pascal-based Nvidia cards to the list of supported Nvidia cards for memory timing (straps)
+  - Adding new parameter -nvmem to force using straps even on unsupported Nvidia GPUs (use -nvmem 1 for GDDR5 cards, 
+    or -nvmem 2 for GDDR5X cards)
+  - Removed some dead ethash-based altcoins and updated the support for the rest of them
+  - Other small fixes
+
 PhoenixMiner 5.1b
 -----------------
   - Added support for VRAM timing adjustments for Nvidia cards of 10x0 series (see the new command

@@ -1,4 +1,4 @@
--[ PhoenixMiner 5.1b documentation ]-
+-[ PhoenixMiner 5.1c documentation ]-
 
 * Introduction
 
@@ -85,7 +85,7 @@ Quick start
 Download and install
 ====================
 
-You can download PhoenixMiner 5.1b from here:
+You can download PhoenixMiner 5.1c from here:
 
 https://mega.nz/#F!2VskDJrI!lsQsz1CdDe8x5cH3L8QaBw (MEGA)
 
@@ -95,7 +95,7 @@ you want to mine BCI with Nvdia cards under Windows.
 If you want to check the integrity of the downloaded file, you can use
 the hashes (checksums) that are provided in our bitcointalk.org thread
 (https://bitcointalk.org/index.php?topic=2647654.0) or the file
-"PhoenixMiner_5.1b_checksums.txt" which is in the same MEGA folder as
+"PhoenixMiner_5.1c_checksums.txt" which is in the same MEGA folder as
 the main PhoenixMiner archive.
 
 Note: **Linux:** Under Linux you need to replace "PhoenixMiner.exe"
@@ -236,11 +236,11 @@ Features, requirements, and limitations
   your rig
 
 * Supports devfee on alternative ethash currencies like ETC, EXP,
-  Music, UBQ, Pirl, Ellaism, Metaverse ETP, Akroma, WhaleCoin, and
-  Victorium. This avoids any additional loses and instabilities
-  becuase of additional DAG generation, and also allows you to use
-  older cards with small VRAM or low hashate on current DAG epochs
-  (e.g. GTX970, 280X).
+  Music, UBQ, Pirl, Ellaism, Metaverse ETP, WhaleCoin, and Victorium.
+  This avoids any additional loses and instabilities becuase of
+  additional DAG generation, and also allows you to use older cards
+  with small VRAM or low hashate on current DAG epochs (e.g. GTX970,
+  280X).
 
 * Supports the Ubqhash algorithm for the UBQ coin. Please note that
   you must add "-coin ubq" to your command line (or "COIN: ubq" to
@@ -348,12 +348,6 @@ Pool options
    etp:
       Metaverse ETP
 
-   pgc:
-      Pegascoin
-
-   akroma:
-      Akroma
-
    whale:
       WhaleCoin
 
@@ -369,12 +363,6 @@ Pool options
    egem:
       EtherGem
 
-   aura:
-      Aura
-
-   gen:
-      Genom
-
    clo:
       Callisto
 
@@ -386,9 +374,6 @@ Pool options
 
    etho:
       Ether-1
-
-   etcc:
-      EtherCC
 
    yoc:
       Yocoin
@@ -877,6 +862,13 @@ Hardware control options (you may specify these options per-GPU)
 -vmr <n>
    Memory refresh rate (0 to 100, default 0)
 
+-nvmem <n>
+   Force using straps on unsupported Nvidia GPUs (0 - do not force, 1
+   - GDDR5, 2 - GDDR5X). Make sure that the parameter matches your GPU
+   memory type. You can try this if your card is Pascal-based but when
+   you try to use -straps or any other memory timing option, the card
+   is shown as “unsupported”.
+
 
 General Options
 ===============
@@ -1043,6 +1035,10 @@ Hardware control options
 
 Here are some important notes about the hardware control options:
 
+* Most recent Nvidia drivers require running as administrator (or as
+  root under Linux) to allow hardware control, so you must run
+  PhoenixMiner as administrator for the VRAM timing options to work.
+
 * When using the VRAM timing options ("-straps", "-vmt1", "-vmt2",
   "-vmt3", "-vmr"), start with lower values and make sure that the
   cards are stable before trying higher and more aggressive settings.
@@ -1051,6 +1047,9 @@ Here are some important notes about the hardware control options:
   -vmt1 will be set to 60 instead of whatever value is specified by
   the 1st strap level. In such case the "-straps" option must be
   specified first.
+
+* Generally, the "-vmt3" option has little effect on the hashrate,
+  so first try adjusting the other parameters.
 
 * The VRAM timing options can be quite different between the GPUs,
   even when the GPUs are the same model. Therefore, you can (and
@@ -1257,4 +1256,3 @@ P008: The miner sometimes crashes when the DAG epoch change.
    and you will be able to see if it is stable during multiple DAG
    generations. If it isn’t you can try to alter the -lidag and -eres
    command line options until the desired stability is achieved.
-
