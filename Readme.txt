@@ -1,4 +1,4 @@
--[ PhoenixMiner 5.1c documentation ]-
+-[ PhoenixMiner 5.2d documentation ]-
 
 * Introduction
 
@@ -85,7 +85,7 @@ Quick start
 Download and install
 ====================
 
-You can download PhoenixMiner 5.1c from here:
+You can download PhoenixMiner 5.2d from here:
 
 https://mega.nz/#F!2VskDJrI!lsQsz1CdDe8x5cH3L8QaBw (MEGA)
 
@@ -95,7 +95,7 @@ you want to mine BCI with Nvdia cards under Windows.
 If you want to check the integrity of the downloaded file, you can use
 the hashes (checksums) that are provided in our bitcointalk.org thread
 (https://bitcointalk.org/index.php?topic=2647654.0) or the file
-"PhoenixMiner_5.1c_checksums.txt" which is in the same MEGA folder as
+"PhoenixMiner_5.2d_checksums.txt" which is in the same MEGA folder as
 the main PhoenixMiner archive.
 
 Note: **Linux:** Under Linux you need to replace "PhoenixMiner.exe"
@@ -615,6 +615,17 @@ Mining options
    avoid allocating new buffers on each DAG epoch switch, which should
    improve DAG switch stability. You may specify this option per-GPU.
 
+-daglim <n>
+   (AMD Polaris, Baffin, Tonga, or Fiji cards only) Limit the DAG size
+   to <n> MB to allow mining on 4 GB cards a few weeks after epoch 373
+   on Windows (or 381 on Linux). The possible values except the exact
+   DAG limit are also 0 (turn off the DAG limit), 1 (automatic DAG
+   limit size, usually 4023 MB under Windows; this is the default).
+   Note that the hashrate will drop significantly with each epoch
+   after the DAG limit is in effect. If the hashrate drops too much
+   (e.g. from 28 MH/s to just 2-3 MH/s, you need to use lower value,
+   for example "-daglim 3996" or even lower.
+
 -dagrestart <n>
    Restart the miner when allocating buffer for a new DAG epoch. The
    possible values are: 0 - never, 1 - always, 2 - auto (the miner
@@ -850,6 +861,16 @@ Hardware control options (you may specify these options per-GPU)
    the default timings). Strap levels 4 to 6 are the same as 1 to 3
    but with less aggressive refresh rates (i.e. lower "-vmr" values).
 
+-straps <n>
+   Memory strap level (AMD Vega cards only). The possible values are 0
+   to 5. 0 is the default value and uses the default timings from the
+   VBIOS. Each strap level corresponds to a predefined combination of
+   memory timings. Strap level 5 is the fastest level and may not work
+   on most cards, 1 is the slowest (but still faster than the default
+   timings). Note that straps for AMD cards are experimental and may
+   lead to crashes or instability. "-vmt1", "-vmt2", and "-vmt3"
+   parameters have no effect on AMD cards
+
 -vmt1 <n>
    Memory timing parameter 1 (0 to 100, default 0)
 
@@ -860,14 +881,23 @@ Hardware control options (you may specify these options per-GPU)
    Memory timing parameter 3 (0 to 100, default 0)
 
 -vmr <n>
-   Memory refresh rate (0 to 100, default 0)
+   Memory refresh rate (0 to 100, default 0). For AMD cards you may
+   also use "-rxboost"
 
 -nvmem <n>
    Force using straps on unsupported Nvidia GPUs (0 - do not force, 1
    - GDDR5, 2 - GDDR5X). Make sure that the parameter matches your GPU
    memory type. You can try this if your card is Pascal-based but when
-   you try to use -straps or any other memory timing option, the card
-   is shown as “unsupported”.
+   you try to use "-straps" or any other memory timing option, the
+   card is shown as “unsupported”.
+
+-rxboost <n>
+   Memory refresh rate on AMD cards (0 - default values, 1 -
+   predefined value that should work on most cards, 2 to 100 -
+   increasingly aggressive settings). If you want to fine tune the
+   value, you may run the miner with "-rxboost 1", write down the
+   corresponding "-vmr" values that are showed in the log file, and
+   then use "-vmr" instead with adjusted values.
 
 
 General Options
@@ -1038,6 +1068,10 @@ Here are some important notes about the hardware control options:
 * Most recent Nvidia drivers require running as administrator (or as
   root under Linux) to allow hardware control, so you must run
   PhoenixMiner as administrator for the VRAM timing options to work.
+
+* The AMD memory timing options ("-rxboost", "-vmr", "-straps"),
+  with the notable exception of "-mt", also require running as
+  administrator (or as root under Linux)
 
 * When using the VRAM timing options ("-straps", "-vmt1", "-vmt2",
   "-vmt3", "-vmr"), start with lower values and make sure that the
