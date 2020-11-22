@@ -1,4 +1,4 @@
--[ PhoenixMiner 5.2d documentation ]-
+-[ PhoenixMiner 5.2e documentation ]-
 
 * Introduction
 
@@ -85,7 +85,7 @@ Quick start
 Download and install
 ====================
 
-You can download PhoenixMiner 5.2d from here:
+You can download PhoenixMiner 5.2e from here:
 
 https://mega.nz/#F!2VskDJrI!lsQsz1CdDe8x5cH3L8QaBw (MEGA)
 
@@ -95,7 +95,7 @@ you want to mine BCI with Nvdia cards under Windows.
 If you want to check the integrity of the downloaded file, you can use
 the hashes (checksums) that are provided in our bitcointalk.org thread
 (https://bitcointalk.org/index.php?topic=2647654.0) or the file
-"PhoenixMiner_5.2d_checksums.txt" which is in the same MEGA folder as
+"PhoenixMiner_5.2e_checksums.txt" which is in the same MEGA folder as
 the main PhoenixMiner archive.
 
 Note: **Linux:** Under Linux you need to replace "PhoenixMiner.exe"

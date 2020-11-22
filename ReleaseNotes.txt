@@ -1,3 +1,11 @@
+PhoenixMiner 5.2e
+-----------------
+  - Fixed some problems with using 8GB AMD cards
+  - Fixed some problems with 4GB AMD cards when mining ETH or ETC
+  - Fixed crash when using the AMD beta blockchain drivers from 2017 (still not 
+    recommended to use these drivers)
+  - Added support for the latest AMD Windows 10 drivers 20.11.2
+
 PhoenixMiner 5.2d
 -----------------
   - Added support for -daglim for AMD Fiji, Tonga, and Baffin cards with 4GB VRAM, so you
