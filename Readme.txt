@@ -1,4 +1,4 @@
--[ PhoenixMiner 5.2e documentation ]-
+-[ PhoenixMiner 5.3b documentation ]-
 
 * Introduction
 
@@ -48,15 +48,16 @@
 Introduction
 ************
 
-PhoenixMiner is fast (arguably the fastest) **Ethash** (ETH, ETC,
+PhoenixMiner is fast (arguably the fastest) **Ethash** (Ethereum, ETC,
 etc.) miner that supports both AMD and Nvidia cards (including in
 mixed mining rigs). It runs under Windows x64 and Linux x64 and has a
 developer fee of 0.65% (the lowest in the industry). This means that
 every 90 minutes the miner will mine for us, its developers, for 35
 seconds.
 
-PhoenixMiner also supports **Ubqhash** for mining UBQ, **ProgPOW** for
-mining BCI, and **dual mining** Ethash/Ubqhash with **Blake2s**.
+PhoenixMiner also supports **ETCHash** for mining ETC, **Ubqhash** for
+mining UBQ, **ProgPOW** for mining BCI, and **dual mining**
+Ethash/ETCHash/Ubqhash with **Blake2s**.
 
 The hashrate is generally higher than Claymore’s Ethereum miner (we
 have measured about 0.4-1.3% hashrate improvement but your results may
@@ -85,7 +86,7 @@ Quick start
 Download and install
 ====================
 
-You can download PhoenixMiner 5.2e from here:
+You can download PhoenixMiner 5.3b from here:
 
 https://mega.nz/#F!2VskDJrI!lsQsz1CdDe8x5cH3L8QaBw (MEGA)
 
@@ -95,7 +96,7 @@ you want to mine BCI with Nvdia cards under Windows.
 If you want to check the integrity of the downloaded file, you can use
 the hashes (checksums) that are provided in our bitcointalk.org thread
 (https://bitcointalk.org/index.php?topic=2647654.0) or the file
-"PhoenixMiner_5.2e_checksums.txt" which is in the same MEGA folder as
+"PhoenixMiner_5.3b_checksums.txt" which is in the same MEGA folder as
 the main PhoenixMiner archive.
 
 Note: **Linux:** Under Linux you need to replace "PhoenixMiner.exe"
@@ -133,10 +134,10 @@ coinotron.com (ETH):
       PhoenixMiner.exe -pool coinotron.com:3344 -wal YourLoginName.WorkerName -pass x -proto 1
 
 ethermine.org (ETC):
-      PhoenixMiner.exe -pool eu1-etc.ethermine.org:4444 -wal YourEtcWalletAddress.WorkerName
+      PhoenixMiner.exe -pool eu1-etc.ethermine.org:4444 -wal YourEtcWalletAddress.WorkerName -coin etc
 
 epool.io (ETC):
-      PhoenixMiner.exe -pool eu.etc.epool.io:8008 -pool2 us.etc.epool.io:8008 -worker WorkerName -wal YourEtcWalletAddress -pass x -retrydelay 2
+      PhoenixMiner.exe -pool eu.etc.epool.io:8008 -pool2 us.etc.epool.io:8008 -worker WorkerName -wal YourEtcWalletAddress -pass x -retrydelay 2 -coin etc
 
 whalesburg.com (ethash auto-switching):
       PhoenixMiner.exe -pool proxy.pool.whalesburg.com:8082 -wal YourEthWalletAddress -worker WorkerName -proto 2
@@ -1290,3 +1291,4 @@ P008: The miner sometimes crashes when the DAG epoch change.
    and you will be able to see if it is stable during multiple DAG
    generations. If it isn’t you can try to alter the -lidag and -eres
    command line options until the desired stability is achieved.
+

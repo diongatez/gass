@@ -1,2 +1,1 @@
-Fixed some problems with using 8GB AMD cards.
-Fixed some problems with 4GB AMD cards when mining ETH or ETC.
+Added support for the new ETCHash algorithm that will be used by the ETC blockchain from Nov 28, 2020. If you want to mine ETC, you should add -coin etc to your command-line, or , COIN: etc to your epools.txt file. See the start_miner_etc.bat and epools_example.txt files for examples
