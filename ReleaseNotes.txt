@@ -1,3 +1,16 @@
+PhoenixMiner 5.4b
+-----------------
+  - New kernels for AMD Vega and Navi GPUs that are slightly faster when the DAG buffer is
+    approaching or passing 4GB in size (the current ETH DAG is close to 4GB). To use these
+    new kernels, you need to use drivers 20.5.1 or later under Win10,
+    or 20.10.x or later under Linux.
+  - Re-running auto-tune as needed when switching to a different DAG buffer type (e.g. when
+    switching from ETH to ETC, or back)
+  - Added support for the latest AMD Windows 10 drivers 20.12.1 and 20.11.3
+  - Fixed crash when trying to set -mvddc on very old AMD drivers (including the beta 
+    blockchain drivers from 2017)
+  - Other small fixes and improvements
+
 PhoenixMiner 5.3b
 -----------------
   - Added support for the new ETCHash algorithm that will be used by the ETC blockchain from 
